@@ -1,0 +1,32 @@
+# ------------------------------------------------------------------------------
+# Tests
+# ------------------------------------------------------------------------------
+files:
+    - user
+
+# ------------------------------------------------------------------------------
+# Mocks
+# ------------------------------------------------------------------------------
+users:
+  - mail          : m1@devcode.co
+    password      : m1
+    name          : Mentor Nº1
+    biography     : Human
+    knowledge     :
+      javascript: 3
+      css3      : 2
+      python    : 2
+      mobile    : 1
+
+  - mail          : m2@devcode.co
+    password      : m2
+    name          : Mentor Nº2
+    knowledge     :
+      javascript: 1
+      ruby      : 2
+
+  - mail          : n1@devcode.co
+    password      : n1
+    name          : Novice Nº1
+    knowledge     :
+      javascript: 0

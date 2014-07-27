@@ -1,0 +1,39 @@
+server:
+  host: localhost
+  port: 1339
+  type: offline
+  timezone : Europe/Ireland
+
+log:
+  request: true
+  response: true
+
+assets:
+  - folder: css
+    maxage: 3600
+  - folder: img
+    maxage: 86400
+  - folder: js
+    maxage: 3600
+  - folder: extensions
+    maxage: 3600
+  - folder: docs
+    maxage: 3600
+  - file:   humans.txt
+    maxage: 86400
+  - file:   robots.txt
+    maxage: 86400
+
+mongo:
+  - name    : primary
+    host    : localhost
+    port    : 27017
+    db      : mentorcode
+
+redis:
+  host      : localhost
+  port      : 6379
+
+appnima:
+  key: NTM1NjUyMjE2NGE3MzIyYzNiZDNhMDM3OjBWUFp5b3UxMm5Fa0JJTEx3eEhUVUtVVEhZcDFUaHg=
+  host: http://192.168.1.180:1337/

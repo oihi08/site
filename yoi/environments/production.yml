@@ -1,0 +1,26 @@
+server:
+  host: localhost
+  port: 1339
+  type: production
+  timezone : Europe/Ireland
+
+log:
+  request: true
+  response: true
+
+mongo:
+  - name    : primary
+    host    : ds037368.mongolab.com
+    port    : 37368
+    db      : tapquo
+    user    : tapquo
+    password: s851LMTH5tb0$3Gl
+
+redis:
+  host      : pub-redis-14048.eu-west-1-1.1.ec2.garantiadata.com
+  port      : 14048
+  password  : tapquo-redis
+
+appnima:
+  key: NTM2OTAxMWQ3MTAwMmU4MzM2ZTAzNzdlOkpxSTZFRVgyQWNVVHg1WHRTbDBBeGZabHVPVm56bE4=
+  host: http://api.appnima.com/

@@ -1,0 +1,29 @@
+{
+  "name"            : "Mentorco.de",
+  "version"         : "0.07.27",
+  "description"     : "",
+  "homepage"        : "http://mentorco.de",
+  "author"          : "Javi Jimenez Villar",
+  "dependencies": {
+    "coffee-script" : "*",
+    "yoi"           : "1.7.27"
+  },
+  "devDependencies" : {
+    "gulp"        : "*",
+    "gulp-coffee" : "*",
+    "gulp-concat" : "*",
+    "gulp-connect": "*",
+    "gulp-flatten": "*",
+    "gulp-header" : "*",
+    "gulp-jasmine": "*",
+    "gulp-stylus" : "*",
+    "gulp-uglify" : "*",
+    "gulp-util"   : "*",
+    "gulp-yml"    : "*"
+  },
+  "scripts"         : {
+    "start": "nodemon yoi.js yoi development",
+    "test": "node yoitest.js yoi development"
+  },
+  "engines"         : { "node": "*"}
+}

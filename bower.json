@@ -1,0 +1,15 @@
+{
+    "name": "mentorco.de",
+    "ignore": [
+            "**/.*",
+            "node_modules",
+            "bower_components",
+            "test",
+            "tests"
+    ],
+    "dependencies": {
+        "jquery"        : "*",
+        "hope"          : "*",
+        "chardin.js"    : "*"
+    }
+}
