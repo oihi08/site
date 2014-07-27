@@ -35,5 +35,5 @@ redis:
   port      : 6379
 
 appnima:
-  key: NTM1NjUyMjE2NGE3MzIyYzNiZDNhMDM3OjBWUFp5b3UxMm5Fa0JJTEx3eEhUVUtVVEhZcDFUaHg=
-  host: http://192.168.1.180:1337/
+  key: NTM2OTAxMWQ3MTAwMmU4MzM2ZTAzNzdlOkpxSTZFRVgyQWNVVHg1WHRTbDBBeGZabHVPVm56bE4=
+  host: http://api.appnima.com/
