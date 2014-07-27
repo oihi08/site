@@ -4,6 +4,8 @@
 endpoints:
   api:
     - session
+    - profile
+
   www:
     - index
 

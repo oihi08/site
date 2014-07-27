@@ -19,7 +19,6 @@ module.exports = (server) ->
         return rest.exception(error.code, error.message) if error
         rest.run user.parse()
 
-
   server.post "/api/signup", (request, response) ->
     rest = new Yoi.Rest request, response
     if rest.required ['mail', 'password']

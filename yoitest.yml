@@ -2,7 +2,8 @@
 # Tests
 # ------------------------------------------------------------------------------
 files:
-    - user
+    - session
+    - profile
 
 # ------------------------------------------------------------------------------
 # Mocks
@@ -10,6 +11,7 @@ files:
 users:
   - mail          : m1@devcode.co
     password      : m1
+    available     : true
     name          : Mentor Nº1
     biography     : Human
     knowledge     :
@@ -20,6 +22,7 @@ users:
 
   - mail          : m2@devcode.co
     password      : m2
+    available     : false
     name          : Mentor Nº2
     knowledge     :
       javascript: 1
@@ -27,6 +30,7 @@ users:
 
   - mail          : n1@devcode.co
     password      : n1
+    available     : true
     name          : Novice Nº1
     knowledge     :
       javascript: 0
