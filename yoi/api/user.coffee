@@ -18,31 +18,20 @@ module.exports = (server) ->
   #-- Filter Methods -----------------------------------------------------------
   server.get "/api/:context/search", (request, response) ->
     rest = new Yoi.Rest request, response
+    CONTEXTS = ["novice", "mentor"]
     if rest.required ["filter"]
-
       Session(rest).then (error, session) ->
-        _filter = JSON.parse(rest.parameter "filter")
+        page = rest.parameter "page"
+        values = JSON.parse(rest.parameter "filter")
 
-        filter = role: (MENTOR = 1)
-        # filter["appnima.name"] = new RegExp _filter.name, "i" if _filter.name?
-        filter.available = _filter.available if _filter.available?
-        filter.language = _filter.language if _filter.language?
-        filter["knowledge.#{_filter.knowledge}"] = $exists: true if _filter.knowledge?
+        filter = role: CONTEXTS.indexOf rest.parameter "context"
+        filter["appnima.name"] = new RegExp(values.name, "i") if values.name?
+        filter.available = values.available if values.available?
+        filter.language = values.language if values.language?
+        filter["knowledge.#{values.knowledge}"] = $exists: true if values.knowledge?
 
-        console.log filter
-        User.search(filter).then (error, mentors) ->
-          if mentors?.length > 0
-            rest.run mentors: (mentor.parse() for mentor in mentors)
+        User.search(filter, limit = 32, page = 1).then (error, users) ->
+          if users?.length > 0
+            rest.run users: (mentor.parse() for mentor in users)
           else
             rest.notFound()
-
-  # server.get "/api/novice/search", (request, response) ->
-  #   rest = new Yoi.Rest request, response
-  #   if rest.required ['filter']
-  #     Session(rest).then (error, session) ->
-  #       User.search(filter).then (error, mentors) ->
-  #         if mentors?.length > 0
-  #           rest.run mentors: (mentor.parse() for mentor in mentors)
-  #         else
-  #           rest.notFound()
-

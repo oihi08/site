@@ -35,5 +35,6 @@ users:
     password      : n1.
     available     : true
     name          : Novice Nº1
+    role          : 0
     knowledge     :
       javascript: 0

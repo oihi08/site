@@ -7,16 +7,16 @@ module.exports = ->
   session = test.users[0]
   tasks.push _info session, test.users[1]
   tasks.push _infoUnknown session, id: 0
-  tasks.push _searchMentor session,
-    # name: "m1"
-    available: true
-    knowledge: "css3"
-    # language: "ES"
-  tasks.push _searchMentor session,
-    available: false
-    knowledge: "ruby"
-
-  tasks.push _unalvailableMentor session,
+  tasks.push _search "mentor", session,
+    name      : "nº1"
+    available : true
+    knowledge : "css3"
+  tasks.push _search "mentor", session,
+    available : false
+    knowledge : "ruby"
+  tasks.push _search "novice", session,
+    knowledge : "javascript"
+  tasks.push _notFound session,
     available: true
     knowledge: "coffeescript"
   tasks
@@ -29,10 +29,10 @@ _info = (session, profile) -> ->
 _infoUnknown = (session, profile) -> ->
   Yoi.Test "GET", "api/user", profile, _session(session), "Profile #{profile.id} doesn't exists.", 404
 
-_searchMentor = (session, filter) -> ->
-  Yoi.Test "GET", "api/mentor/search", filter: JSON.stringify(filter), _session(session), "Search mentors with a filter.", 200
+_search = (context, session, filter) -> ->
+  Yoi.Test "GET", "api/#{context}/search", filter: JSON.stringify(filter), _session(session), "Search #{context}s with #{filter.knowledge} knowledge.", 200
 
-_unalvailableMentor = (session, filter) -> ->
+_notFound = (session, filter) -> ->
   Yoi.Test "GET", "api/mentor/search", filter: JSON.stringify(filter), _session(session), "Search mentors with a filter.", 404
 
 

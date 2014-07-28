@@ -50,9 +50,11 @@ User.statics.login = (appnima) ->
     promise.done error, result
   promise
 
-User.statics.search = (query) ->
+User.statics.search = (query, limit = 0, page = 1, sort = created_at: "desc") ->
   promise = new Yoi.Hope.Promise()
-  @find(query).exec (error, result) -> promise.done error, result
+  range =  if page > 1 then limit * (page - 1) else 0
+  @find(query).skip(range).limit(limit).sort(sort).exec (error, result) ->
+    promise.done error, result
   promise
 
 User.statics.findAndUpdate = (filter, parameters) ->
