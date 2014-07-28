@@ -5,6 +5,7 @@ files:
     - session
     - profile
     - user
+    - talk
 
 # ------------------------------------------------------------------------------
 # Mocks
@@ -21,12 +22,17 @@ users:
       css3      : 2
       python    : 2
       mobile    : 1
+    networks      :
+      twitter: soyjavi
+      github : soyjavi
 
   - mail          : m2@devcode.co
     password      : m2
     available     : false
     name          : Mentor Nº2
     role          : 1
+    networks      :
+      twitter: cataflu
     knowledge     :
       javascript: 1
       ruby      : 2
@@ -36,5 +42,27 @@ users:
     available     : true
     name          : Novice Nº1
     role          : 0
+    networks      :
+      twitter: oihi08
     knowledge     :
       javascript: 0
+
+
+talks:
+  - mentor: 0
+    knowledge: javascript
+
+  # FAILS: mentor[1] is unalvailable
+  - mentor: 1
+    knowledge: ruby
+
+  # FAILS: mentor[0] doesn't know ruby
+  - mentor: 0
+    knowledge: ruby
+
+  # FAILS: it isn't a knowledge
+  - mentor: 0
+
+    # FAILS: Mentor isn't a real mentor (is a novice)
+  - mentor: 2
+    knowledge: javascript
