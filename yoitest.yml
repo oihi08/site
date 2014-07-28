@@ -29,7 +29,7 @@ users:
       ruby      : 2
 
   - mail          : n1@devcode.co
-    password      : n1
+    password      : n1.
     available     : true
     name          : Novice Nº1
     knowledge     :
