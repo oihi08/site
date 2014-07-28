@@ -3,15 +3,11 @@
 Yoi       = require "yoi"
 Schema    = Yoi.Mongoose.Schema
 db        = Yoi.Mongo.connections.primary
-
-USER =
-  ROLE:
-    NOVICE: 0
-    MENTOR: 1
+C         = require "../constants"
 
 User = new Schema
-  role              : type: Number, default: USER.ROLE.NOVICE
-  available         : type: Boolean, default: true
+  role              : type: Number, default: C.USER.ROLE.NOVICE
+  available         : type: Boolean, default: C.USER.AVAILABLE
   biography         : type: String
   knowledge         : type: Object # language: level (0-none, 1-beginer, 2-medium, 3-expert)
   networks          : type: Object # network: username
@@ -19,6 +15,7 @@ User = new Schema
   appnima           :
     id              : type: String
     mail            : type: String
+    username        : type: String
     name            : type: String
     avatar          : type: String
     access_token    : type: String
@@ -45,27 +42,29 @@ User.statics.login = (appnima) ->
   filter  = "appnima.id": appnima.id
   properties = appnima: appnima
   options = upsert: true
-  @findOneAndUpdate filter, properties, options, (error, result) ->
-    error = code: 404, message: "User not found." if not result?
-    promise.done error, result
+  @findOneAndUpdate filter, properties, options, (error, value) ->
+    error = code: 404, message: "User not found." if not value?
+    promise.done error, value
   promise
 
 User.statics.search = (query, limit = 0, page = 1, sort = created_at: "desc") ->
   promise = new Yoi.Hope.Promise()
   range =  if page > 1 then limit * (page - 1) else 0
-  @find(query).skip(range).limit(limit).sort(sort).exec (error, result) ->
-    promise.done error, result
+  @find(query).skip(range).limit(limit).sort(sort).exec (error, value) ->
+    if limit is 1
+      error = code: 402, message: "User not found." if value.length is 0
+      value = value[0] if value.length isnt 0
+    promise.done error, value
   promise
 
 User.statics.findAndUpdate = (filter, parameters) ->
   promise = new Yoi.Hope.Promise()
   parameters.updated_at = new Date()
-  @findOneAndUpdate filter, parameters, (error, result) ->
-    promise.done error, result
+  @findOneAndUpdate filter, parameters, (error, value) ->
+    promise.done error, value
   promise
 
 # -- Instance methods ----------------------------------------------------------
-
 User.methods.parse = ->
   id        : @_id.toString()
   role      : @role
@@ -75,6 +74,7 @@ User.methods.parse = ->
   knowledge : @knowledge
   language  : @language
   mail      : @appnima.mail
+  username  : @appnima.username
   name      : @appnima.name
   avatar    : @appnima.avatar
   phone     : @appnima.phone
