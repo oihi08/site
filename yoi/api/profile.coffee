@@ -12,7 +12,7 @@ module.exports = (server) ->
       Session(rest).then (error, session) ->
         agent = request.headers["user-agent"]
         parameters = {}
-        for key in ["name", "available", "biography", "knowledge", "networks", "avatar"]
+        for key in ["name", "role", "available", "biography", "knowledge", "networks", "avatar"]
           parameters[key] = rest.parameter(key) if rest.parameter(key)?
 
         Yoi.Hope.shield([->

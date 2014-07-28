@@ -6,11 +6,11 @@ db        = Yoi.Mongo.connections.primary
 
 USER =
   ROLE:
+    NOVICE: 0
     MENTOR: 1
-    NOVICE: 2
 
 User = new Schema
-  role              : type: Number, default: USER.ROLE.MENTOR
+  role              : type: Number, default: USER.ROLE.NOVICE
   available         : type: Boolean, default: true
   biography         : type: String
   knowledge         : type: Object # language: level (0-none, 1-beginer, 2-medium, 3-expert)
@@ -70,6 +70,7 @@ User.methods.parse = ->
   available : @available
   biography : @biography
   networks  : @networks
+  knowledge : @knowledge
   language  : @language
   mail      : @appnima.mail
   name      : @appnima.name

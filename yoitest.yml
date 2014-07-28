@@ -15,6 +15,7 @@ users:
     available     : true
     name          : Mentor Nº1
     biography     : Human
+    role          : 1
     knowledge     :
       javascript: 3
       css3      : 2
@@ -25,6 +26,7 @@ users:
     password      : m2
     available     : false
     name          : Mentor Nº2
+    role          : 1
     knowledge     :
       javascript: 1
       ruby      : 2
