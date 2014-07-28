@@ -23,11 +23,6 @@ _changePassword = (user) -> ->
     new_password: user.password
   Yoi.Test "PUT", "api/profile/password", parameters, _session(user), "User #{user.name} change his password to #{}.", 200
 
-
-# Private methods
-# ==============================================================================
+# -- Private methods -----------------------------------------------------------
 _session = (user) ->
-  if user?.token?
-    authorization: user.token
-  else
-    null
+  if user?.token? then authorization: user.token else null

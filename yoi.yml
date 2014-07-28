@@ -5,6 +5,7 @@ endpoints:
   api:
     - session
     - profile
+    - user
 
   www:
     - index

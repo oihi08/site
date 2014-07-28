@@ -3,7 +3,6 @@
 Yoi     = require "yoi"
 User    = require "../common/models/user"
 Session = require "../common/session"
-fs      = require "fs"
 
 module.exports = (server) ->
 
