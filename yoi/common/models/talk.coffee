@@ -22,6 +22,23 @@ Talk.statics.register = (properties) ->
   new talk(properties).save (error, value) -> promise.done error, value
   promise
 
+Talk.statics.findAndUpdate = (filter, parameters) ->
+  promise = new Yoi.Hope.Promise()
+  parameters.updated_at = new Date()
+  @findOneAndUpdate filter, parameters, (error, value) ->
+    promise.done error, value
+  promise
+
+Talk.statics.search = (query, limit = 0, page = 1, sort = created_at: "desc") ->
+  promise = new Yoi.Hope.Promise()
+  range =  if page > 1 then limit * (page - 1) else 0
+  @find(query).skip(range).limit(limit).sort(sort).exec (error, value) ->
+    if limit is 1
+      error = code: 402, message: "Talk not found." if value.length is 0
+      value = value[0] if value.length isnt 0
+    promise.done error, value
+  promise
+
 # -- Instance methods ----------------------------------------------------------
 Talk.methods.parse = ->
   id        : @_id.toString()
