@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 files:
     - session
-    - profile
+    # - profile
     - user
     - talk
 
@@ -51,6 +51,9 @@ users:
 talks:
   - mentor: 0
     knowledge: javascript
+
+  - mentor: 0
+    knowledge: css3
 
   # FAILS: mentor[1] is unalvailable
   - mentor: 1
